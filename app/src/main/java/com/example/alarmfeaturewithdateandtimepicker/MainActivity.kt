@@ -11,11 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.alarmfeaturewithdateandtimepicker.databinding.ActivityMainBinding
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.time.Clock
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,15 +30,21 @@ class MainActivity : AppCompatActivity() {
         viewBinding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         calendar = Calendar.getInstance()
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if (alarmManager==null){
+            alarmManager=getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        }
         // Create Notification Channel
         CreateNotificationChannel()
 
         viewBinding.setAlarm.setOnClickListener {
            SetAlarm()
+            Toast.makeText(applicationContext, "Alarm has been set successfully",Toast.LENGTH_SHORT).show()
         }
 
         viewBinding.cancelAlarm.setOnClickListener {
             cancelAlarm()
+            Toast.makeText(applicationContext, "Alarm has been cancelled",Toast.LENGTH_SHORT).show()
         }
 
         viewBinding.TimePicker.setOnClickListener {
