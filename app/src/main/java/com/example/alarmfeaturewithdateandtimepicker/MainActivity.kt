@@ -37,15 +37,16 @@ class MainActivity : AppCompatActivity() {
         CreateNotificationChannel()
 
         viewBinding.setAlarm.setOnClickListener {
-
            SetAlarm()
+        }
 
+        viewBinding.cancelAlarm.setOnClickListener {
+            cancelAlarm()
         }
 
         viewBinding.TimePicker.setOnClickListener {
             ShowDateAndTimePicker()
         }
-//        CacelAlarm()
     }
 
     fun CreateNotificationChannel() {
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,"Alarm Set Successfully",Toast.LENGTH_SHORT).show()
     }
 
-    fun CacelAlarm() {
+    fun cancelAlarm() {
         pendingIntent= PendingIntent.getBroadcast(this,0,intent,0)
         if (alarmManager==null){
             alarmManager=getSystemService(Context.ALARM_SERVICE) as AlarmManager
