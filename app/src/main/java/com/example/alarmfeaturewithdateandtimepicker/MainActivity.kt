@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
+        calendar = Calendar.getInstance()
         // Create Notification Channel
         CreateNotificationChannel()
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun CreateNotificationChannel() {
+    fun CreateNotificationChannel() { 
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val channelName:CharSequence = "MyAlarmNotificationChannel"
